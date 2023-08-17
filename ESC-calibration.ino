@@ -27,9 +27,6 @@ char data;
 void setup() {
     Serial.begin(9600);
     
-    motA.attach(4, MIN_PULSE_LENGTH, MAX_PULSE_LENGTH);
-    motB.attach(5, MIN_PULSE_LENGTH, MAX_PULSE_LENGTH);
-    motC.attach(6, MIN_PULSE_LENGTH, MAX_PULSE_LENGTH);
     motD.attach(7, MIN_PULSE_LENGTH, MAX_PULSE_LENGTH);
     
     displayInstructions();
@@ -45,17 +42,13 @@ void loop() {
         switch (data) {
             // 0
             case 48 : Serial.println("Sending minimum throttle");
-                      motA.writeMicroseconds(MIN_PULSE_LENGTH);
-                      motB.writeMicroseconds(MIN_PULSE_LENGTH);
-                      motC.writeMicroseconds(MIN_PULSE_LENGTH);
+
                       motD.writeMicroseconds(MIN_PULSE_LENGTH);
             break;
 
             // 1
             case 49 : Serial.println("Sending maximum throttle");
-                      motA.writeMicroseconds(MAX_PULSE_LENGTH);
-                      motB.writeMicroseconds(MAX_PULSE_LENGTH);
-                      motC.writeMicroseconds(MAX_PULSE_LENGTH);
+
                       motD.writeMicroseconds(MAX_PULSE_LENGTH);
             break;
 
@@ -83,18 +76,14 @@ void test()
         Serial.print("Pulse length = ");
         Serial.println(i);
         
-        motA.writeMicroseconds(i);
-        motB.writeMicroseconds(i);
-        motC.writeMicroseconds(i);
+
         motD.writeMicroseconds(i);
         
         delay(200);
     }
 
     Serial.println("STOP");
-    motA.writeMicroseconds(MIN_PULSE_LENGTH);
-    motB.writeMicroseconds(MIN_PULSE_LENGTH);
-    motC.writeMicroseconds(MIN_PULSE_LENGTH);
+
     motD.writeMicroseconds(MIN_PULSE_LENGTH);
 }
 
